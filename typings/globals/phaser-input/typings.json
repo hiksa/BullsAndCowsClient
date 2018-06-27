@@ -1,0 +1,10 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "E:\\Projects\\BullsAndCowsClient\\src\\game\\phaser-input\\typings.json",
+    "raw": "file:src/game/phaser-input/typings.json",
+    "main": "phaser-input.d.ts",
+    "global": true,
+    "name": "phaser-input"
+  }
+}

@@ -11,9 +11,9 @@ function createWindow () {
     icon: `file://${__dirname}/dist/assets/logo.png`
   })
 
-
   win.loadURL(`file://${__dirname}/dist/angular-electron/index.html`)
 
+  win.maximize();
   //// uncomment below to open the DevTools.
   // win.webContents.openDevTools()
 

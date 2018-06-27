@@ -5,6 +5,12 @@ import * as OperationTypes from '../core/common/operation-types';
 import { GameSignalRService } from "src/core/services/game-signal-r.service";
 import { EventEmitter } from "@angular/core";
 
+import * as Phaser from 'phaser-ce';
+import 'phaser-ce/build/custom/pixi';
+import 'phaser-ce/build/custom/p2';
+import { SecretNumberState } from './../game/States/SecretNumberState';
+import { TitleState } from '../game/States/TitleState';
+import { QueueState } from '../game/States/QueueState';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +22,25 @@ export class AppComponent implements OnInit {
   joinedGameHandler = new EventEmitter<boolean>();
   title = 'app';
 
+  public game: Phaser.Game;
+  public background: Phaser.Sprite;
+
   constructor(private _gameSignalRService: GameSignalRService) {
     this._gameSignalRService.init(`hubs/game`);
+
+    this.game = new Phaser.Game(1280, 720, Phaser.CANVAS, 'game', {
+      preload: this.preload,
+      create: this.create
+    });
+  }
+
+  public preload(): void {
+  }
+
+  public create(): void {
+    this.game.state.add('TitleState', TitleState, true);
+    this.game.state.add('QueueState', QueueState, false);
+    this.game.state.add('SecretNumberState', SecretNumberState, false);
   }
 
   subscribeToHubEvents(): void {

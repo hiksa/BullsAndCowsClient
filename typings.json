@@ -1,0 +1,6 @@
+{
+	"globalDevDependencies": {
+		"phaser": "file:node_modules/phaser-ce/typescript/typings.json",
+		"phaser-input": "file:src/game/phaser-input/typings.json"
+	}
+}
