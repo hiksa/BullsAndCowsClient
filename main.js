@@ -1,13 +1,17 @@
 const { app, BrowserWindow } = require('electron')
+const electron = require('electron')
 
 let win;
-
 function createWindow () {
+  let { width, height } = electron.screen.getPrimaryDisplay().size;
+
   // Create the browser window.
   win = new BrowserWindow({
-    width: 600,
-    height: 600,
+    width: width,
+    height: height,
     backgroundColor: '#ffffff',
+    //fullscreen: true,
+    //autoHideMenuBar: true,
     icon: `file://${__dirname}/dist/assets/logo.png`
   })
 

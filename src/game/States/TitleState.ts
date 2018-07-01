@@ -18,7 +18,6 @@ export class TitleState extends Phaser.State {
     this.game.scale.pageAlignHorizontally = true;
     this.game.scale.pageAlignVertically = true;
 
-
     this.buttonStart = this.game.add.button(this.game.world.centerX - 95, 400, 'button', this.transitionToQueueState, this, 0);
     let text = "- Click to enter queue -";
     let style = { font: "40px Arial", fill: "#ff0044", align: "center" };

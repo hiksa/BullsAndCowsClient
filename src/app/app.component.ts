@@ -11,6 +11,7 @@ import 'phaser-ce/build/custom/p2';
 import { SecretNumberState } from './../game/States/SecretNumberState';
 import { TitleState } from '../game/States/TitleState';
 import { QueueState } from '../game/States/QueueState';
+import { GameState } from '../game/States/GameState';
 
 @Component({
   selector: 'app-root',
@@ -41,6 +42,7 @@ export class AppComponent implements OnInit {
     this.game.state.add('TitleState', TitleState, true);
     this.game.state.add('QueueState', QueueState, false);
     this.game.state.add('SecretNumberState', SecretNumberState, false);
+    this.game.state.add('GameState', GameState, false);
   }
 
   subscribeToHubEvents(): void {

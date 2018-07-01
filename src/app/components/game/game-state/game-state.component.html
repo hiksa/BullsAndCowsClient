@@ -1,0 +1,30 @@
+<div class="container state" id="gameState">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-6">
+      <h4>Guess the opponent's secret number</h4>
+    </div>
+    <div class="col-md-4 col-md-offset-6">
+      <form class="form-group" [formGroup]="numberGuessForm">
+        <input type="text" id="secretNumber" class="form-control" formControlName="number" />
+        <div *ngIf="number.invalid && (number.dirty || number.touched)" class="alert alert-danger">
+          <div *ngIf="number.errors.required">
+            Number is required.
+          </div>
+          <div *ngIf="number.errors.minlength">
+            Number must be at least 4 characters long.
+          </div>
+          <div *ngIf="number.errors.maxlength">
+            Number must be max 4 characters long.
+          </div>
+          <div *ngIf="number.errors.min">
+            Number must be positive.
+          </div>
+          <div *ngIf="number.errors.pattern">
+            Must be a number
+          </div>
+        </div>
+        <button type="submit" class="btn btn-default" (click)="submitGuessNumber()" [disabled]="numberGuessForm.invalid">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
