@@ -1,0 +1,6 @@
+<div class="col-md-6 col-md-offset-3">
+  <button type="button" (click)="joinGame()" class="btn btn-large btn-block btn-default">Join</button>
+  <div *ngIf="joinResult">
+    <h1>{{joinResult}}</h1>
+  </div>
+</div>

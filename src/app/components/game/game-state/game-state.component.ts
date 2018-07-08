@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SecretNumberState } from '../../../../game/States/SecretNumberState';
+import { QueueState } from '../../../../game/States/QueueState';
+import { GameState } from '../../../../game/States/GameState';
+import * as Phaser from 'phaser-ce';
+import 'phaser-ce/build/custom/pixi';
+import 'phaser-ce/build/custom/p2';
 
 @Component({
   selector: 'app-game-state',
@@ -11,9 +17,14 @@ export class GameStateComponent implements OnInit {
   public numberGuessForm: FormGroup;
   public numberGuess = { number: 0 };
 
-  constructor() { }
+  constructor() { 
+    // this.game = new Phaser.Game(1280, 720, Phaser.CANVAS, 'game', {
+    //   preload: this.preload,
+    //   create: this.create
+    // });
+  }
 
-  ngOnInit() : void {
+  public ngOnInit() : void {
     this.numberGuessForm = new FormGroup({
       'number': new FormControl(this.numberGuess.number, [
         Validators.required,
@@ -24,10 +35,19 @@ export class GameStateComponent implements OnInit {
     });
   }
 
-  get number() { return this.numberGuessForm.get('number'); }
+  public preload(): void {
+  }
+
+  public create(): void {
+    // this.game.state.add('QueueState', QueueState, false);
+    // this.game.state.add('SecretNumberState', SecretNumberState, false);
+    // this.game.state.add('GameState', GameState, true);
+  }
 
   public submitGuessNumber() {
-    console.log(this.numberGuessForm.value['number']);
-    console.log('submitted guess');
+    // TODO: Send guess number to check against the opponent's number
+    console.log(`Submitted guess ${this.numberGuessForm.value['number']}`);
   }
+
+  get number() { return this.numberGuessForm.get('number'); }
 }

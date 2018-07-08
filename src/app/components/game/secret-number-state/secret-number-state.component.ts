@@ -1,6 +1,6 @@
 import { Component, OnInit, forwardRef } from '@angular/core';
 import { Validators, FormControl, FormGroup } from '@angular/forms';
-import { AppComponent } from '../../../app.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-secret-number-state',
@@ -12,7 +12,7 @@ export class SecretNumberStateComponent implements OnInit {
   public secretNumberForm: FormGroup;
   public secret = { secretNumber: 0 };
 
-  constructor(private appComponent: AppComponent) { }
+  constructor(private router: Router) { }
 
   ngOnInit() : void {
     this.secretNumberForm = new FormGroup({
@@ -25,9 +25,10 @@ export class SecretNumberStateComponent implements OnInit {
     });
   }
 
-  get secretNumber() { return this.secretNumberForm.get('secretNumber'); }
-
   public submitSecretNumber() {
-    this.appComponent.game.state.start('GameState');
+    //TODO: Send number that user has entered
+    this.router.navigate(['/game']);
   }
+  
+  get secretNumber() { return this.secretNumberForm.get('secretNumber'); }
 }
