@@ -9,8 +9,9 @@ import { SignalRService } from "src/core/services/signal-r.service";
 import { GameSignalRService } from "src/core/services/game-signal-r.service";
 import { SecretNumberStateComponent } from './components/game/secret-number-state/secret-number-state.component';
 import { GameStateComponent } from './components/game/game-state/game-state.component';
-import { JoinGameComponent } from './components/game/join-game/join-game.component';
+import { JoinGameComponent } from './components/core/join-game/join-game.component';
 import { CredentialsComponent } from './components/core/credentials/credentials.component';
+import { WaitingScreenComponent } from './components/core/waiting-screen/waiting-screen.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CredentialsComponent } from './components/core/credentials/credentials.
     SecretNumberStateComponent,
     GameStateComponent,
     JoinGameComponent,
-    CredentialsComponent
+    CredentialsComponent,
+    WaitingScreenComponent
   ],
   imports: [
     BrowserModule,
