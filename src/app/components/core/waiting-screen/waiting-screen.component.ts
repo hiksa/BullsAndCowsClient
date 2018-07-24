@@ -9,19 +9,16 @@ import { GameSignalRService } from '../../../../core/services/game-signal-r.serv
   styleUrls: ['./waiting-screen.component.css']
 })
 export class WaitingScreenComponent implements OnInit {
-  public joinResult: boolean = false;
-  public joinedGameHandler = new EventEmitter<boolean>();
+  public matchFoundHandler = new EventEmitter<boolean>();
 
   constructor(private _gameSignalRService: GameSignalRService, private router: Router) { 
-    this._gameSignalRService.init(`hubs/game`);
   }
 
   public ngOnInit(): void {
-    this._gameSignalRService.registerAdditionalEvent(OperationTypes.GameJoined, this.joinedGameHandler);
+    this._gameSignalRService.registerAdditionalEvent(OperationTypes.MatchFound, this.matchFoundHandler);
 
-    this.joinedGameHandler.subscribe((result: boolean) => {
-      this.joinResult = result;
-      this.router.navigate(['/game'])
+    this.matchFoundHandler.subscribe((result: string) => {
+      this.router.navigate(['/number'])
     });
   }
 }

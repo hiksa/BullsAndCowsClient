@@ -1,5 +1,6 @@
 export const InvalidWitness = "Invalid witness";
 export const GameJoined = "Game joined";
+export const MatchFound = "MatchFound";
 export const FailedToJoinGame = "Failed to join game";
 export const GameStarted = "Game started";
 export const NumberPicked = "Number picked";
