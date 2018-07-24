@@ -12,6 +12,7 @@ import { GameStateComponent } from './components/game/game-state/game-state.comp
 import { JoinGameComponent } from './components/core/join-game/join-game.component';
 import { CredentialsComponent } from './components/core/credentials/credentials.component';
 import { WaitingScreenComponent } from './components/core/waiting-screen/waiting-screen.component';
+import { GameContractService } from '../core/services/game-contract.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { WaitingScreenComponent } from './components/core/waiting-screen/waiting
     NgbModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [SignalRService, GameSignalRService],
+  providers: [SignalRService, GameSignalRService, GameContractService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

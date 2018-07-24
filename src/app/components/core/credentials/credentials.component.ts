@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '../../../../../node_modules/@angular/forms';
 import { Router } from '@angular/router';
 import Neon, { sc } from '@cityofzion/neon-js';
+import { GameContractService } from '../../../../core/services/game-contract.service';
 
 @Component({
   selector: 'app-credentials',
@@ -11,7 +12,7 @@ import Neon, { sc } from '@cityofzion/neon-js';
 export class CredentialsComponent implements OnInit {
   public credentialsForm: FormGroup;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private gameContractService: GameContractService) { }
 
   public ngOnInit(): void {
     this.credentialsForm = new FormGroup({
@@ -26,7 +27,7 @@ export class CredentialsComponent implements OnInit {
       let wif = this.credentialsForm.value["wif"];
       let account = Neon.create.account(wif);
       let address = sc.ContractParam.byteArray(account.address, 'address');
-      console.log(address);
+      this.gameContractService.setWif = wif;
       localStorage.setItem('address', address['value']);
       this.router.navigate(['/join']);
     } catch {
