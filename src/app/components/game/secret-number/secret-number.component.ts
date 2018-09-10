@@ -2,19 +2,21 @@ import { Component, OnInit, forwardRef } from '@angular/core';
 import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GameSignalRService } from '../../../../core/services/game-signal-r.service';
-import * as OperationTypes from '../../../../core/common/operation-types';
+import { GameContractService }  from '../../../../core/services/game-contract.service';
 
 @Component({
-  selector: 'app-secret-number-state',
-  templateUrl: './secret-number-state.component.html',
-  styleUrls: ['./secret-number-state.component.css']
+  selector: 'app-secret-number',
+  templateUrl: './secret-number.component.html',
+  styleUrls: ['./secret-number.component.css']
 })
-export class SecretNumberStateComponent implements OnInit {
-  public game: Phaser.Game
+export class SecretNumberComponent implements OnInit {
   public secretNumberForm: FormGroup;
   public secret = { secretNumber: 0 };
 
-  constructor(private _gameSignalRService: GameSignalRService, private router: Router) { }
+  constructor(
+    private router: Router, 
+    private gameContractservice: GameContractService
+  ) { }
 
   ngOnInit() : void {
     this.secretNumberForm = new FormGroup({
@@ -28,11 +30,10 @@ export class SecretNumberStateComponent implements OnInit {
   }
 
   public submitSecretNumber() {
-    //TODO: Send number that user has entered
-    let secretNumber = this.secretNumberForm.value["secretNumber"];
-    console.log('submitted secret number ' + secretNumber);
-    //this._gameSignalRService._hubConnection.send(OperationTypes.NumberPicked, secretNumber);
-    //this.router.navigate(['/game']);
+    let secretNumber = this.secretNumberForm.value['secretNumber'];
+    console.log('Submitted secret number ' + secretNumber);
+    this.gameContractservice.pickNumber(secretNumber);
+    this.router.navigate(['/waiting-opponent']);
   }
   
   get secretNumber() { return this.secretNumberForm.get('secretNumber'); }

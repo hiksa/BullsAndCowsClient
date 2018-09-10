@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SecretNumberStateComponent } from './secret-number-state.component';
+import { WaitingBlockComponent } from './waiting-block.component';
 
-describe('SecretNumberStateComponent', () => {
-  let component: SecretNumberStateComponent;
-  let fixture: ComponentFixture<SecretNumberStateComponent>;
+describe('WaitingBlockComponent', () => {
+  let component: WaitingBlockComponent;
+  let fixture: ComponentFixture<WaitingBlockComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SecretNumberStateComponent ]
+      declarations: [ WaitingBlockComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SecretNumberStateComponent);
+    fixture = TestBed.createComponent(WaitingBlockComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

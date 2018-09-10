@@ -1,5 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
+import * as OperationTypes from '../../../../core/common/operation-types';
 import { GameSignalRService } from '../../../../core/services/game-signal-r.service';
+import { GameContractService } from '../../../../core/services/game-contract.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,18 +10,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./join-game.component.css']
 })
 export class JoinGameComponent implements OnInit {
-  constructor(private _gameSignalRService: GameSignalRService, private router: Router) { 
-    this._gameSignalRService.init(`hubs/game`);
+  public gameCreatedHandler = new EventEmitter<any>();
+  public matchFoundHandler = new EventEmitter<any>();
+
+  constructor(
+    private gameSignalRService: GameSignalRService, 
+    private router: Router, 
+    private gameContracts: GameContractService
+  ) { 
+    this.gameSignalRService.init(`hubs/game`);
   }
 
   public ngOnInit(): void {
+    this.gameSignalRService.registerAdditionalEvent(OperationTypes.GameCreated, this.gameCreatedHandler);
+    this.gameSignalRService.registerAdditionalEvent(OperationTypes.MatchFound, this.matchFoundHandler);
+    
+    this.gameCreatedHandler.subscribe((gameGuid: string) => {
+      console.log('joined game ', gameGuid);
+      this.gameContracts.joinGame(gameGuid);
+      this.router.navigate(['/waiting-opponent']);
+    });
+
+    this.matchFoundHandler.subscribe((gameGuid: string) => {
+      this.gameContracts.joinGame(gameGuid);
+      this.router.navigate(['/waiting-block']);
+    });
   }
 
   public joinGame(): void {
-    let address = localStorage.getItem('address');
-    console.log('Searhing for game. Address: ' + address);
+    console.log('Searhing for game. Address: ' + this.gameContracts.address);
     
-    this._gameSignalRService._hubConnection.send(`Join`, address);
-    this.router.navigate(['/waiting']);
+    this.gameSignalRService._hubConnection.send(`Join`, this.gameContracts.address);
   }
 }

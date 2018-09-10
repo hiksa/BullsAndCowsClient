@@ -3,7 +3,7 @@ import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 
 @Injectable()
 export class SignalRService {
-    private baseUrl: string = `http://localhost:5000`;
+    private baseUrl: string = `http://localhost:54996`;
 
     connectionEstablished = new EventEmitter<Boolean>();
 
@@ -14,6 +14,8 @@ export class SignalRService {
         this.createConnection(`${this.baseUrl}/${hubUrl}`);
         this.registerOnServerEvents();
         this.startConnection();
+
+        this._hubConnection.serverTimeoutInMilliseconds = 10000000;
     }
 
     private createConnection(connection: string) {

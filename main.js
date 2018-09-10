@@ -18,6 +18,7 @@ function createWindow () {
   win.loadURL(`file://${__dirname}/dist/angular-electron/index.html`)
 
   win.maximize();
+  win.toggleDevTools();
   //// uncomment below to open the DevTools.
   // win.webContents.openDevTools()
 

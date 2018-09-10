@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WaitingScreenComponent } from './waiting-screen.component';
+import { WaitingOpponentComponent } from './waiting-opponent.component';
 
 describe('WaitingScreenComponent', () => {
-  let component: WaitingScreenComponent;
-  let fixture: ComponentFixture<WaitingScreenComponent>;
+  let component: WaitingOpponentComponent;
+  let fixture: ComponentFixture<WaitingOpponentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WaitingScreenComponent ]
+      declarations: [ WaitingOpponentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WaitingScreenComponent);
+    fixture = TestBed.createComponent(WaitingOpponentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
